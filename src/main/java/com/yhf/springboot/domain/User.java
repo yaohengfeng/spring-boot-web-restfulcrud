@@ -2,7 +2,9 @@ package com.yhf.springboot.domain;
 
 import java.io.Serializable;
 
-
+/**
+ * 管理员
+ */
 public class User implements Serializable {
 
     private Integer uid;

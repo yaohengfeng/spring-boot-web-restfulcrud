@@ -11,7 +11,7 @@
     <groupId>com.yhf</groupId>
     <artifactId>spring-boot-web-restfulcrud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-web-restfulcrud</name>
+    <name>weixin</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -59,13 +59,28 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>RELEASE</version>
+        </dependency>
         <!--json-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.61</version>
         </dependency>
-
+        <!--模板-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--AOP-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--JSR303-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

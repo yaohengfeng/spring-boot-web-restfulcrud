@@ -9,11 +9,12 @@
         <result column="user_password" property="uPassword"/>
     </resultMap>
     <select id="listUser" resultMap="userMap">
+        /*测试所用*/
         select * from tbl_user
     </select>
 
     <select id="loginUser" parameterType="String" resultMap="userMap"  >
-        select * from tbl_user where user_name=#{uName } and user_password=#{uPassword}
+        select user_name from tbl_user where user_name=#{uName} and user_password=#{uPassword}
     </select>
 
     <insert id="saveUser" parameterType="User">

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>后台管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+<!--导航栏-->
+<nav th:replace="admin/_fragments :: menu" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
+                        <span th:text="${session.user.uName}">姚恒峰</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--二级导航-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <a href="#" class="active teal item">推送记录详情</a>
+    </div>
+
+</div>
+<!--中间内容-->
+<div class="m-container m-padded-tb-big">
+    <div class="ui container">
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>姓名</th>
+                <th>推文标题</th>
+                <th>浏览次数</th>
+                <th>最近浏览时间</th>
+                <th>是否阅读</th>
+                <th>是否推送</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>姚恒峰</td>
+                <td>刻意练习清单</td>
+                <td>24</td>
+                <td>2019-10-11 09:49</td>
+                <td>是</td>
+                <td>是</td>
+                <td>
+                    <a href="#" class="ui mini teal basic button">推送</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="8">
+                    <div class="ui pagination menu">
+                        <!--<a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        <a class="item">1</a>
+                        <a class="item">2</a>
+                        <a class="item">3</a>
+                        <a class="item">4</a>
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>-->
+                        <a class="item">上一页</a>
+                        <a class="item">下一页</a>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<!--底部-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright@2016-2017yaohengfeng</p>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    //注销
+    $('.ui.dropdown').dropdown({
+        on:'hover'
+    });
+</script>
+</body>
+</html>

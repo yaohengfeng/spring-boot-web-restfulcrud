@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhf.springboot.dao.ITweetDao">
+    <resultMap id="tweetsMap" type="Tweet">
+        <id column="t_id" property="id"/>
+        <result column="t_title" property="title"/>
+        <result column="t_context" property="context"/>
+        <result column="t_number" property="number"/>
+        <result column="t_creattime" property="creatTime"/>
+        <result column="t_updatetime" property="updateTime"/>
+        <collection property="wxUsers" ofType="wxUser">
+            <id column="wx_id" property="id"/>
+            <result column="wx_openid" property="openid"/>
+            <result column="wx_nickname" property="nickname"/>
+            <result column="wx_sex" property="sex"/>
+            <result column="wx_address" property="address"/>
+        </collection>
+    </resultMap>
+    <select id="getAllTweets" resultMap="tweetsMap">
+        select t_id,t_title,t_context,t_number,t_creattime,t_updatetime from tb_tweets
+    </select>
+
+    <select id="getAllTweetsAndWXUser" resultMap="tweetsMap">
+        select * from tb_tweets t
+        left outer join tb_wt wt on t.t_id=wt.t_id
+        left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id
+    </select>
+
+</mapper>

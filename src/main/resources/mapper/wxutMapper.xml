@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhf.springboot.dao.IWTdao">
+    <resultMap id="wxutMap" type="WXUT">
+        <id column="t_id" property="tId"/>
+        <id column="wxu_id" property="uId"/>
+        <result column="t_title" property="wtTitle"/>
+        <result column="wt_count" property="count"/>
+        <result column="browsingtime" property="browsingTime"/>
+        <result column="send" property="send"/>
+        <result column="read" property="read"/>
+        <collection property="wxUser" ofType="wxUser">
+            <id column="wx_id" property="id"/>
+            <result column="wx_openid" property="openid"/>
+            <result column="wx_nickname" property="nickname"/>
+            <result column="wx_sex" property="sex"/>
+            <result column="wx_address" property="address"/>
+        </collection>
+    </resultMap>
+    <select id="getAll" resultMap="wxutMap">
+        select * from tb_wt wt
+        left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id
+    </select>
+
+
+</mapper>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理系统</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+
+
+<!--测试页-->
+<body>
+<!--导航栏-->
+<nav th:replace="admin/_fragments :: menu" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
+                        <span th:text="${session.user.uName}">姚恒峰</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--中间内容-->
+<div  class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <div  class="ui secondary segment form">
+            <div id="table-container">
+                <table class="ui compact teal table">
+                 <thead>
+                    <tr>
+                    <th></th>
+                    <th>用户名</th>
+                    <th>是否推送</th>
+                    <th>是否阅读</th>
+                    <th>阅读次数</th>
+                    <th>操作</th>
+                    </tr>
+                 </thead>
+                <tbody>
+               <!-- <tr th:each="blog,iterStat : ${page.content}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${blog.published}  ">张三</td>
+                    <td th:text="${blog.published} ? '是':'草稿'">否</td>
+                    <td th:text="${blog.published} ? '是':'草稿'">是</td>
+                    <td th:text="${blog.published} ">1</td>
+                    <td>
+                        <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">推送</a>
+                    </td>
+                </tr>-->
+               <tr >
+                   <td >1</td>
+                   <td >张三</td>
+                   <td >否</td>
+                   <td >是</td>
+                   <td >1</td>
+                   <td>
+                       <a href="#" class="ui mini teal basic button">推送</a>
+                   </td>
+               </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="7">
+                        <!--<div class="ui mini pagination menu" th:if="${page.totalPages}>1" >
+                            <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item" th:unless="${page.first}">上一页</a>
+                            <a onclick="page(this)" th:attr="data-page=${page.number}+1" class=" item" th:unless="${page.last}">下一页</a>
+                        </div>-->
+                        <div class="ui mini pagination menu"  >
+                            <a href="#">上一页</a>
+                            <a href="#">下一页</a>
+                        </div>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+    <script>
+        $('.ui.dropdown').dropdown({
+            on : 'hover'
+        });
+    </script>
+</body>
+</html>
