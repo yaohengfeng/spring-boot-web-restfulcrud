@@ -1,7 +1,7 @@
 package com.yhf.springboot.vo;
 
 import java.util.Date;
-
+//没用上
 public class WTVO {
     private Integer uId;//用户id
     private Integer tId;//推文id
