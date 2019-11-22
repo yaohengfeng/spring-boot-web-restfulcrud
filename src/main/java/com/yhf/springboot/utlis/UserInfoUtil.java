@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfoUtil {
-    public static Map<String,Object> toBean(String resultInfo){
+    public static Map<String,String> toBean(String resultInfo){
         resultInfo=resultInfo.replace("{","").replace("}","");
         String []args=resultInfo.split(",");
 
-        Map<String,Object> map=new HashMap<>();
+        Map<String,String> map=new HashMap<>();
         for (int i=0;i<args.length;i++){
             String key=args[i].substring(0,args[i].indexOf(":")).replace("\"","");
             String value=args[i].substring(args[i].indexOf(":")+1,args[i].length()).replace("\"","");

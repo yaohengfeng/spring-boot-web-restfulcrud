@@ -6,7 +6,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yhf.springboot.domain.Msg;
 import com.yhf.springboot.domain.Tweet;
+import com.yhf.springboot.domain.WXUT;
 import com.yhf.springboot.service.ITweetService;
+import com.yhf.springboot.service.IWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,7 @@ public class TweetsController {
     @Autowired
     private ITweetService tweetService;
 
+
     @GetMapping(name = "/tweets")
     public String getAllTwrrtse(@RequestParam(value = "pn",defaultValue = "1")Integer pn,Model model){
         PageHelper.startPage(pn,5);
@@ -36,5 +39,6 @@ public class TweetsController {
         model.addAttribute("pageInfo",pageInfo);
         return "admin/tweets";
     }
+
 
 }

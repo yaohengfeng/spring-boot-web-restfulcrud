@@ -11,4 +11,6 @@ public interface ITweetDao {
     List<Tweet> getAllTweets();
     //获取推文加用户信息
     List<Tweet> getAllTweetsAndWXUser();
+    //根据id获取推文信息
+    Tweet selectTweetsById(Integer tid);
 }

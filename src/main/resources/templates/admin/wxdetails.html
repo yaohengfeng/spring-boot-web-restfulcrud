@@ -46,22 +46,22 @@
                 <th>推文标题</th>
                 <th>浏览次数</th>
                 <th>最近浏览时间</th>
-                <th>是否阅读</th>
                 <th>是否推送</th>
+                <th>是否阅读</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>姚恒峰</td>
-                <td>刻意练习清单</td>
-                <td>24</td>
-                <td>2019-10-11 09:49</td>
-                <td>是</td>
-                <td>是</td>
+            <tr th:each="detail:${detailsPageInfo.list}">
+                <td th:text="${detail.uId}">1</td>
+                <td th:text="${detail.wxUser.nickname}">姚恒峰</td>
+                <td th:text="${detail.wtTitle}">刻意练习清单</td>
+                <td th:text="${detail.count}">24</td>
+                <td th:text="${detail.browsingTime}">2019-10-11 09:49</td>
+                <td th:text="${detail.send} ? 是:否">是</td>
+                <td th:text="${detail.read} ? 是:否">是</td>
                 <td>
-                    <a href="#" class="ui mini teal basic button">推送</a>
+                    <a href="#" th:href="@{/pushOne/{uid}/{tid}(uid=${detail.uId},tid=${detail.tId})}" class="ui mini teal basic button">推送</a>
                 </td>
             </tr>
             </tbody>
@@ -81,6 +81,9 @@
                         </a>-->
                         <a class="item">上一页</a>
                         <a class="item">下一页</a>
+                    </div>
+                    <div class="ui right aligned  container">
+                        <button type="button" class="ui teal button" onclick="window.history.go(-1)" >返回</button>
                     </div>
                 </th>
             </tr>

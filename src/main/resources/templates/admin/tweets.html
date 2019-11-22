@@ -60,8 +60,8 @@
                 <td th:text="${tweet.creatTime}">2019-10-11 09:41</td>
                 <td th:text="${tweet.updateTime}">2019-10-11 09:45</td>
                 <td>
-                    <a href="#" th:href="@{/push}" class="ui mini teal basic button">推送</a>
-                    <a href="#" class="ui mini red basic button">详情</a>
+                    <a href="#" th:href="@{/push/{tid}(tid=${tweet.id})}" class="ui mini teal basic button">推送</a>
+                    <a href="#" th:href="@{/tweetsinfo/{tid}(tid=${tweet.id})}" class="ui mini red basic button">详情</a>
                 </td>
             </tr>
             </tbody>

@@ -22,7 +22,13 @@
         select t_id,t_title,t_context,t_number,t_creattime,t_updatetime from tb_tweets
     </select>
 
+    <select id="selectTweetsById" parameterType="Integer" resultMap="tweetsMap">
+        select t_id,t_title,t_context,t_number,t_creattime,t_updatetime from tb_tweets where t_id=#{tid}
+    </select>
+
+
     <select id="getAllTweetsAndWXUser" resultMap="tweetsMap">
+        /*测试实验*/
         select * from tb_tweets t
         left outer join tb_wt wt on t.t_id=wt.t_id
         left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id

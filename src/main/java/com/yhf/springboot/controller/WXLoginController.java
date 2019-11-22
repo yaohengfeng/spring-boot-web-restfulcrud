@@ -2,27 +2,47 @@ package com.yhf.springboot.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.yhf.springboot.domain.Tweet;
+import com.yhf.springboot.domain.WXUT;
+import com.yhf.springboot.service.ITweetService;
+import com.yhf.springboot.service.IWTService;
+import com.yhf.springboot.service.IWXUserService;
 import com.yhf.springboot.utlis.HttpClientUtil;
 import com.yhf.springboot.utlis.UserInfoUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/wxAuth")
 public class WXLoginController {
 
-    @RequestMapping("/login")
-    public void wxLogin(HttpServletResponse response) throws IOException {
+    @Autowired
+    private ITweetService tweetService;
+
+    @Autowired
+    private IWXUserService iwxUserService;
+
+    @Autowired
+    private IWTService iwtService;
+
+    Integer tId;
+    @RequestMapping("/login/{tid}")
+    public void wxLogin(@PathVariable("tid")Integer tid, HttpServletResponse response) throws IOException {
         //请求获取code的回调地址
         //用线上环境的域名或者用内网穿透，不能用ip
         String callBack = "http://yhf.vipgz2.idcfengye.com/wxAuth/callBack";
+        tId=tid;
         //请求地址
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize" +
                 "?appid=" + "wx184763cf4becafd7" +
@@ -62,9 +82,32 @@ public class WXLoginController {
 
         //此时已获取到userInfo，再根据业务进行处理
         System.out.println("请求获取userInfo:" + resultInfo);
-        Map<String,Object> map= UserInfoUtil.toBean(resultInfo);
+        Map<String,String> map= UserInfoUtil.toBean(resultInfo);
+        String openid=map.get("openid").replace("\"","");
+        Integer uid = iwxUserService.getId(openid);
+        WXUT wxut = iwtService.selectWTByID(uid, tId);
+        Integer count=wxut.getCount();
+        if (count==null){
+            count=1;
+        }else {
+            count++;
+        }
+        wxut.setRead(true);
+        wxut.setCount(count);
+        Date date=new Date();
+        wxut.setBrowsingTime(date);
+
+        iwtService.updateWT(wxut,uid,tId);
         System.out.println("-------------"+map);
-        return "index";
+
+        Tweet tweet = tweetService.selectTweetsById(tId);
+        Integer number = tweet.getNumber();
+        if (number==null){
+            number=1;
+        }else {
+            number++;
+        }
+        return tweet.getContext();
     }
 }
 

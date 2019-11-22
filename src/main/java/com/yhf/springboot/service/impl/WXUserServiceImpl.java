@@ -22,4 +22,19 @@ public class WXUserServiceImpl implements IWXUserService {
         return iwxUserDao.getOpenId();
     }
 
+    @Override
+    public List<WXUser> getOpenIdAndWID() {
+        return iwxUserDao.getOpenIdAndWID();
+    }
+
+    @Override
+    public String getOpId(Integer uid) {
+        return iwxUserDao.getOpId(uid);
+    }
+
+    @Override
+    public Integer getId(String openId) {
+        return iwxUserDao.getId(openId);
+    }
+
 }

@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements IUserService {
-
     @Autowired
     private IUserDao userDao;
 
@@ -43,7 +42,7 @@ public class UserServiceImpl implements IUserService {
         int num=5;//登陆错误的次数
         if (!redisTemplate.hasKey(key)){//如果不存在
             redisTemplate.opsForValue().set(key,"1");
-            redisTemplate.expire(key,1,TimeUnit.MINUTES);
+            redisTemplate.expire(key,1, TimeUnit.MINUTES);
             return "登陆失败，当前还能输入"+(num-1)+"次";
         }else {
             long  loginFailCount=Long.parseLong(redisTemplate.opsForValue().get(key)) ;

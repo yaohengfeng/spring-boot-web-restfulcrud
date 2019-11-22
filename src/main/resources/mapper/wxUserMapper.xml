@@ -18,6 +18,7 @@
             <result column="t_updatetime" property="updateTime"/>
         </collection>
     </resultMap>
+    <!--测试所用sql-->
     <select id="getAll" resultMap="wxUserMap">
         select * from  tb_wxuserinfo u
         left outer join tb_wt wt on u.wx_id=wt.wxu_id
@@ -28,4 +29,15 @@
         select wx_openid from tb_wxuserinfo
     </select>
 
+    <select id="getOpId" resultType="String" parameterType="Integer">
+        select wx_openid from tb_wxuserinfo where wx_id=#{uid}
+    </select>
+
+    <select id="getId" resultType="Integer" parameterType="String">
+        select wx_id from tb_wxuserinfo where wx_openid=#{openId}
+    </select>
+
+    <select id="getOpenIdAndWID" resultMap="wxUserMap">
+        select wx_id,wx_openid from tb_wxuserinfo
+    </select>
 </mapper>

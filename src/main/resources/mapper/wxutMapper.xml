@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yhf.springboot.dao.IWTdao">
     <resultMap id="wxutMap" type="WXUT">
-        <id column="t_id" property="tId"/>
         <id column="wxu_id" property="uId"/>
+        <id column="t_id" property="tId"/>
         <result column="t_title" property="wtTitle"/>
         <result column="wt_count" property="count"/>
         <result column="browsingtime" property="browsingTime"/>
         <result column="send" property="send"/>
-        <result column="read" property="read"/>
+        <result column="read_" property="read"/>
         <collection property="wxUser" ofType="wxUser">
             <id column="wx_id" property="id"/>
             <result column="wx_openid" property="openid"/>
@@ -24,5 +24,30 @@
         left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id
     </select>
 
+    <select id="getAllWT"  resultMap="wxutMap">
+        select wxu_id,t_id,t_title,wt_count,browsingtime,send,read_,u.wx_nickname from tb_wt wt
+        left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id
+    </select>
+
+    <select id="selectWTByTid"  resultMap="wxutMap" parameterType="Integer">
+        select wxu_id,t_id,t_title,wt_count,browsingtime,send,read_,u.wx_nickname from tb_wt wt
+        left outer join tb_wxuserinfo u on u.wx_id=wt.wxu_id where wt.t_id=#{tId}
+    </select>
+
+    <insert id="insertWT" parameterType="WXUT">
+        insert into tb_wt (wxu_id,t_id,t_title,wt_count,browsingtime,send,read_)
+        value (#{uId},#{tId},#{wtTitle},#{count},#{browsingTime},#{send},#{read})
+    </insert>
+
+    <select id="selectWTByID"  resultMap="wxutMap" parameterType="Integer">
+        select wxu_id,t_id,t_title,wt_count,browsingtime,send,read_
+        from tb_wt
+        where wxu_id=#{uid} and t_id=#{tid}
+    </select>
+
+    <update id="updateWT">
+        update tb_wt set wt_count=#{wxut.count},browsingtime=#{wxut.browsingTime},read_=#{wxut.read}
+        where wxu_id=#{uid_} and t_id=#{tid_}
+    </update>
 
 </mapper>

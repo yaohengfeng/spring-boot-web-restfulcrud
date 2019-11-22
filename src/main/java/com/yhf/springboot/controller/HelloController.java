@@ -1,16 +1,25 @@
 package com.yhf.springboot.controller;
 
+import com.yhf.springboot.domain.WXUT;
+import com.yhf.springboot.service.IWTService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class HelloController {
 
+    @Autowired
+    private IWTService iwtService;
 
-    @RequestMapping("/hello")
+    @GetMapping("/index")
     public String hello(){
-        return "Hello Word";
+        WXUT wxut=new WXUT();
+
+
+        return "index";
     }
 }

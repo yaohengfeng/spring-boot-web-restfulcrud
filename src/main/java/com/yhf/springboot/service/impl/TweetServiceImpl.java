@@ -18,4 +18,9 @@ public class TweetServiceImpl implements ITweetService {
     public List<Tweet> selectAllTweets() {
         return tweetsDao.getAllTweets();
     }
+
+    @Override
+    public Tweet selectTweetsById(Integer tid) {
+        return tweetsDao.selectTweetsById(tid);
+    }
 }

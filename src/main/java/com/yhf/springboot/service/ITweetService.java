@@ -10,4 +10,9 @@ public interface ITweetService {
      * @return
      */
     List<Tweet> selectAllTweets();
+
+    /**
+     *
+     */
+    Tweet selectTweetsById(Integer tid);
 }

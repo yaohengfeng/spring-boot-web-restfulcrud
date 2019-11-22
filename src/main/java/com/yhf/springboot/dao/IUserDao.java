@@ -13,4 +13,6 @@ public interface IUserDao {
     User loginUser(@Param("uName") String uName, @Param("uPassword") String uPassword);
 
     void saveUser(User user);
+
+
 }
